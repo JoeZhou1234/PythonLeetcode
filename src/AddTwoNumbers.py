@@ -65,3 +65,28 @@ class Solution:
             head_node = head_node.next
 
         return reversed_digits
+
+
+# this is the
+class BetterSolution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy_head = ListNode()
+        tail = dummy_head
+        carry = 0
+
+        while l1 is not None or l2 is not None or carry != 0:
+            digit1 = l1.val if l1 is not None else 0
+            digit2 = l2.val if l2 is not None else 0
+
+            sum = digit1 + digit2 + carry
+            digit = sum % 10
+            carry = sum // 10
+
+            tail.next = ListNode(digit)
+
+            l1 = l1.next if l1 is not None else None
+            l2 = l2.next if l2 is not None else None
+            tail = tail.next
+
+        result = dummy_head.next
+        return result
